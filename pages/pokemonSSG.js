@@ -1,16 +1,6 @@
-import react from "react";
-import { React, useState } from "react";
+import axios from "axios";
 
-const PokemonSSG = () => {
-  const [pokemonList, setPokemonList] = useState([]);
-
-  react.useEffect(async () => {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL);
-    const { results } = await response.json();
-
-    setPokemonList(results);
-  }, []);
-
+const PokemonSSG = ({ pokemonList }) => {
   return (
     <div className="container">
       <h2 className="title"> Pokemon CSR List</h2>
@@ -21,6 +11,14 @@ const PokemonSSG = () => {
       </ul>
     </div>
   );
+};
+
+export const getStaticProps = async () => {
+  const res = await axios.get(process.env.NEXT_PUBLIC_MY_API_URL);
+  const { data: pokemonList } = res;
+  return {
+    props: { pokemonList },
+  };
 };
 
 export default PokemonSSG;
