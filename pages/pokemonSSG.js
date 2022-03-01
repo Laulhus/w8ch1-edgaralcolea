@@ -16,8 +16,8 @@ const PokemonSSG = ({ pokemonList }) => {
               height={100}
             />
             <p>{pokemon.name}</p>
-            <p>{pokemon.type}</p>
-            <p>{pokemon.ability}</p>
+            <p>{`Type: ${pokemon.type}`}</p>
+            <p>{`Ability: ${pokemon.ability}`}</p>
           </li>
         ))}
       </ul>
