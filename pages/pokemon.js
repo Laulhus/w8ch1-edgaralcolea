@@ -1,5 +1,6 @@
 import react from "react";
 import { React, useState } from "react";
+import styles from "../styles/pokemon.module.css";
 
 const Pokemon = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -14,7 +15,7 @@ const Pokemon = () => {
   return (
     <div className="container">
       <h2 className="title"> Pokemon CSR List</h2>
-      <ul className="pokemon-list">
+      <ul className={styles.pokemon_list}>
         {pokemonList.map((pokemon) => (
           <li key={pokemon.name}>{pokemon.name}</li>
         ))}
