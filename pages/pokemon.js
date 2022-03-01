@@ -1,3 +1,4 @@
+import Image from "next/image";
 import react from "react";
 import { React, useState } from "react";
 import styles from "../styles/pokemon.module.css";
@@ -9,7 +10,13 @@ const Pokemon = () => {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL);
     const { results } = await response.json();
 
-    setPokemonList(results);
+    const pokemonList = results.map(async (pokemon) => {
+      const response = await fetch(pokemon.url);
+      const { name, sprites } = await response.json();
+      return { name, sprites };
+    });
+
+    setPokemonList(await Promise.all(pokemonList));
   }, []);
 
   return (
@@ -17,7 +24,15 @@ const Pokemon = () => {
       <h2 className="title"> Pokemon CSR List</h2>
       <ul className={styles.pokemon_list}>
         {pokemonList.map((pokemon) => (
-          <li key={pokemon.name}>{pokemon.name}</li>
+          <li key={pokemon.name}>
+            <Image
+              src={pokemon.sprites.front_default}
+              alt={pokemon.name}
+              width={100}
+              height={100}
+            />
+            <p>{pokemon.name}</p>
+          </li>
         ))}
       </ul>
     </div>
