@@ -4,8 +4,8 @@ const nextConfig = {
 };
 
 module.exports = {
-  images: {
-    domains: ["raw.githubusercontent.com"],
-  },
   nextConfig,
+  images: {
+    domains: ["raw.githubusercontent.com", "media-exp1.licdn.com"],
+  },
 };
