@@ -5,7 +5,7 @@ import Image from "next/image";
 const PokemonISR = ({ pokemonList }) => {
   return (
     <div className="container">
-      <h2 className="title"> Pokemon SSG List</h2>
+      <h2 className="title"> Pokemon ISR List</h2>
       <ul className={styles.pokemon_list}>
         {pokemonList.map((pokemon) => (
           <li key={pokemon.id}>
